@@ -16,16 +16,19 @@
         work so i have been on a quest to find the answers<br> 
         in the process learning some new skills.
         </p>
-      <script>
-var x = 0;
-var msg = "";
-
-while (x <= 10) {
-  msg = msg + "Loading~$:" + x + "<br>";
-  x ++;
+  <script>
+function displayMessage(firstName) {
+    alert("Hello " + firstName + ", hope you like JavaScript functions!");
 }
-document.write(msg);
 </script>
+<form>
+  First name:
+  <input type="input" name="yourName">
+  <input
+  type="button"
+  onclick="displayMessage(form.yourName.value);"
+  value="Display Message">
+</form>
     </body>
   </center>
 </html>
