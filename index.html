@@ -3,6 +3,27 @@
   <head>
     <meta charset="UTF-8">
     <title>1nam-github-index.html</title>
+	    <script>
+function displayMessage(firstName) {
+    alert("Wow What a Wish! " + firstName + ", sending your wish to the first shooting star!");
+}
+</script>
+<audio
+  src="good.wav"
+       loop=True
+       volume="0.1"
+  autoplay>
+  Your browser does not support the <code>audio</code> element.
+</audio>
+<form>
+  Close your eyes Make a Wish,
+  then type the wish here-->:
+  <input type="input" name="yourName">
+  <input
+  type="button"
+  onclick="displayMessage(form.yourName.value);"
+  value="Shooting Star">
+</form>
       </head>
 <img src="sky.png.png" id="bg" alt="">
   <style>
@@ -27,27 +48,6 @@
         work so i have been on a quest to find the answers<br> 
         in the process learning some new skills.
         </p>
-  <script>
-function displayMessage(firstName) {
-    alert("Wow What a Wish! " + firstName + ", sending your wish to the first shooting star!");
-}
-</script>
-<audio
-  src="good.wav"
-       loop=True
-       volume="0.1"
-  autoplay>
-  Your browser does not support the <code>audio</code> element.
-</audio>
-<form>
-  Close your eyes Make a Wish,
-  then type the wish here-->:
-  <input type="input" name="yourName">
-  <input
-  type="button"
-  onclick="displayMessage(form.yourName.value);"
-  value="Shooting Star">
-</form>
     </body>
   </center>
 </html>
