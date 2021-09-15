@@ -10,3 +10,20 @@ Visit Site -->   <a href="https://1nam.github.io/website/" target="_blank" rel="
 
 
 [id]: eye2.jpg  "eye"
+
+# Loading
+vik_function2 <- function(x,y){x^2+3*y}
+for(i in 1:10){print (i)}
+
+
+
+
+
+
+
+
+
+
+
+
+
