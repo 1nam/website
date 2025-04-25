@@ -1,26 +1,108 @@
-<!Doctype html>
-<html lang="en"><center>
-  <head>
-    <meta charset="UTF-8">
-    <title>Happy-Enigma</title>	  
-<audio
-  src="planet-code.mp3"
-       volume="0.1"
-  autoplay>
-  Your browser does not support the <code>audio</code> element.
-</audio>
-      </head>
-	<body>
-	<style>
-		html {
-   min-height: 95%;
-   background-image: url(stars.png);
-   background-size: cover;
-   background-repeat: no-repeat;
-   background-position: auto;
-}
-</style>
-	<a href="https://1nam.github.io/website/page-one.html">Code-Earth</a>
-		<a href="https://github.com/1nam?tab=repositories">repositories</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 30px;
+    }
+
+    canvas {
+      display: block;
+      width: 100%;
+      height: 150px;
+    }
+
+    .socials {
+      position: absolute;
+      bottom: 20px;
+      display: flex;
+      gap: 20px;
+    }
+
+    .socials a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2em;
+      transition: color 0.3s;
+    }
+
+    .socials a:hover {
+      color: #1DB954;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome</h1>
+
+  <canvas id="visualizer"></canvas>
+
+  <audio id="audio" src="planet-code.mp3" autoplay loop></audio>
+
+  <div class="socials">
+    <a href="href="https://github.com/1nam?tab=repositories" target="_blank">GitHub</a>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const canvas = document.getElementById('visualizer');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = 150;
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const source = audioCtx.createMediaElementSource(audio);
+    const analyser = audioCtx.createAnalyser();
+
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    analyser.fftSize = 64;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    function draw() {
+      requestAnimationFrame(draw);
+
+      analyser.getByteFrequencyData(dataArray);
+
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      const barWidth = (canvas.width / bufferLength) * 1.5;
+      let x = 0;
+
+      for(let i = 0; i < bufferLength; i++) {
+        const barHeight = dataArray[i];
+        ctx.fillStyle = `rgb(${barHeight+50}, ${barHeight}, 150)`;
+        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
+        x += barWidth + 1;
+      }
+    }
+
+    audio.onplay = () => {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      draw();
+    };
+  </script>
 </body>
 </html>
