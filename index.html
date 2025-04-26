@@ -36,7 +36,29 @@
 </head>
 <body>
 
-  <h1>Welcome</h1>
+  <style>
+  @keyframes rainbowGlow {
+    0% { color: #ff0000; }
+    14% { color: #ff7f00; }
+    28% { color: #ffff00; }
+    42% { color: #00ff00; }
+    57% { color: #0000ff; }
+    71% { color: #4b0082; }
+    85% { color: #9400d3; }
+    100% { color: #ff0000; }
+  }
+
+  .rainbow-header {
+    animation: rainbowGlow 5s linear infinite;
+    font-weight: bold;
+    font-size: 3em; /* Make it extra big to grab attention! */
+    text-align: center;
+    margin-top: 50px;
+    color: #ffa500; /* Starting color before animation */
+  }
+</style>
+
+<h1 class="rainbow-header">Welcome to My Glowing World</h1>
 
   <!-- Hidden audio player -->
  <audio id="myAudio" src="tvari-tokyo-cafe-159065.mp3"></audio>
