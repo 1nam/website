@@ -60,6 +60,41 @@
   color: white;
   text-transform: uppercase;
 }
+    .vault-badge img {
+    width: 150px; /* Adjust size if needed */
+    animation: badgePulse 3s infinite ease-in-out;
+    border-radius: 12px; /* Soft rounded edges */
+    box-shadow: 0 0 10px #00ffea80; /* Initial soft glow */
+    transition: transform 0.3s ease;
+  }
+
+  .vault-badge img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #00ffee;
+  }
+
+  @keyframes badgePulse {
+    0% {
+      box-shadow: 0 0 10px #00ffea80;
+    }
+    50% {
+      box-shadow: 0 0 20px #00ffee;
+    }
+    100% {
+      box-shadow: 0 0 10px #00ffea80;
+    }
+  }
+
+  .vault-badge {
+    text-align: center;
+    margin-top: 30px;
+  }
+
+  .vault-badge p {
+    color: #00ffee;
+    font-size: 14px;
+    margin-top: 10px;
+  }
   </style>
   </head>
 <body>
