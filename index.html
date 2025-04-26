@@ -39,42 +39,30 @@
   <h1>Welcome</h1>
 
   <!-- Hidden audio player -->
-  <audio id="myAudio" src="planet-code.mp3"></audio>
+ <audio id="myAudio" src="planet-code.mp3"></audio>
 
-  <!-- Custom button -->
-  <button id="playPauseBtn">Play Music</button>
+<button id="playPauseBtn">Play Music</button>
 
-  <script>
-    const audio = document.getElementById('myAudio');
-    const button = document.getElementById('playPauseBtn');
+<script>
+  const audio = document.getElementById('myAudio');
+  const button = document.getElementById('playPauseBtn');
 
-    // Set initial volume low
-    audio.volume = 0.1;
+  // Set volume low
+  audio.volume = 0.1;
 
-    button.addEventListener('click', function() {
-      if (audio.paused) {
-        audio.play();
-        button.textContent = 'Pause Music';
-        button.classList.add('glow'); // add glow
-      } else {
-        audio.pause();
-        button.textContent = 'Play Music';
-        button.classList.remove('glow'); // remove glow
-      }
-    });
+  button.addEventListener('click', function() {
+    if (audio.paused) {
+      audio.play();
+      button.textContent = 'Pause Music';
+      button.classList.add('glow');
+    } else {
+      audio.pause();
+      button.textContent = 'Play Music';
+      button.classList.remove('glow');
+    }
+  });
+</script>
 
-    // Try autoplay muted first
-    window.addEventListener('load', function() {
-      audio.muted = true;
-      audio.play().then(() => {
-        audio.muted = false;
-        button.textContent = 'Pause Music';
-        button.classList.add('glow');
-      }).catch((error) => {
-        console.log('Autoplay blocked, waiting for user click');
-      });
-    });
-  </script>
 
 </body>
 </html>
