@@ -3,106 +3,68 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcome</title>
+  <title>Welcme</title>
   <style>
     body {
-      margin: 0;
-      background-color: #000;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      overflow: hidden;
+      background-color: #2e2e2e;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
     }
-
     h1 {
-      font-size: 3em;
-      margin-bottom: 30px;
+      color: darkorange;
     }
-
-    canvas {
-      display: block;
-      width: 100%;
-      height: 150px;
-    }
-
-    .socials {
-      position: absolute;
-      bottom: 20px;
-      display: flex;
-      gap: 20px;
-    }
-
-    .socials a {
-      color: #fff;
-      text-decoration: none;
+    a {
+      color: limegreen;
       font-size: 1.2em;
-      transition: color 0.3s;
+      text-decoration: none;
+    }
+    .equalizer {
+      display: flex;
+      justify-content: center;
+      align-items: end;
+      height: 100px;
+      margin-top: 40px;
+      gap: 5px;
+    }
+    .bar {
+      width: 10px;
+      background: limegreen;
+      animation: bounce 1s infinite ease-in-out;
+    }
+    .bar:nth-child(1) { animation-delay: 0s; }
+    .bar:nth-child(2) { animation-delay: 0.1s; }
+    .bar:nth-child(3) { animation-delay: 0.2s; }
+    .bar:nth-child(4) { animation-delay: 0.3s; }
+    .bar:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes bounce {
+      0%, 100% { height: 20px; }
+      50% { height: 100px; }
     }
 
-    .socials a:hover {
-      color: #1DB954;
+    audio {
+      margin-top: 30px;
     }
   </style>
 </head>
 <body>
   <h1>Welcome</h1>
+  <p><a href="https://github.com/1nam?tab=repositories">GitHub Repo</a></p>
 
-  <canvas id="visualizer"></canvas>
+  <audio controls>
+    <source src="planet-code.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
-  <audio id="audio" src="planet-code.mp3" autoplay loop></audio>
-
-  <div class="socials">
-    <a href="href="https://1nam.github.io/website/" target="_blank">website</a>
+  <div class="equalizer">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
   </div>
-
-  <script>
-    const audio = document.getElementById('audio');
-    const canvas = document.getElementById('visualizer');
-    const ctx = canvas.getContext('2d');
-
-    canvas.width = window.innerWidth;
-    canvas.height = 150;
-
-    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const source = audioCtx.createMediaElementSource(audio);
-    const analyser = audioCtx.createAnalyser();
-
-    source.connect(analyser);
-    analyser.connect(audioCtx.destination);
-
-    analyser.fftSize = 64;
-    const bufferLength = analyser.frequencyBinCount;
-    const dataArray = new Uint8Array(bufferLength);
-
-    function draw() {
-      requestAnimationFrame(draw);
-
-      analyser.getByteFrequencyData(dataArray);
-
-      ctx.fillStyle = '#000';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      const barWidth = (canvas.width / bufferLength) * 1.5;
-      let x = 0;
-
-      for(let i = 0; i < bufferLength; i++) {
-        const barHeight = dataArray[i];
-        ctx.fillStyle = `rgb(${barHeight+50}, ${barHeight}, 150)`;
-        ctx.fillRect(x, canvas.height - barHeight, barWidth, barHeight);
-        x += barWidth + 1;
-      }
-    }
-
-    audio.onplay = () => {
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
-      draw();
-    };
-  </script>
 </body>
 </html>
+
