@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Welcme</title>
+  <meta charset="UTF-8">
+  <title>Custom Audio Player with Glow</title>
   <style>
     body {
       background-color: #2e2e2e;
@@ -15,65 +14,69 @@
     h1 {
       color: darkorange;
     }
-    a {
-      color: limegreen;
+    button {
+      background-color: limegreen;
+      border: none;
+      padding: 15px 30px;
       font-size: 1.2em;
-      text-decoration: none;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: box-shadow 0.3s ease;
     }
-    .equalizer {
-      display: flex;
-      justify-content: center;
-      align-items: end;
-      height: 100px;
-      margin-top: 40px;
-      gap: 5px;
+    button:hover {
+      background-color: #32cd32;
     }
-    .bar {
-      width: 10px;
-      background: limegreen;
-      animation: bounce 1s infinite ease-in-out;
-    }
-    .bar:nth-child(1) { animation-delay: 0s; }
-    .bar:nth-child(2) { animation-delay: 0.1s; }
-    .bar:nth-child(3) { animation-delay: 0.2s; }
-    .bar:nth-child(4) { animation-delay: 0.3s; }
-    .bar:nth-child(5) { animation-delay: 0.4s; }
-
-    @keyframes bounce {
-      0%, 100% { height: 20px; }
-      50% { height: 100px; }
-    }
-
-    audio {
-      margin-top: 30px;
+    /* Glow effect when active */
+    .glow {
+      box-shadow: 0 0 20px 5px limegreen;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome To 1nam</h1>
-  <p><a href="https://github.com/1nam?tab=repositories">GitHub Repo</a></p>
 
-  <audio id="bgMusic" src="planet-code.mp3" autoplay muted>
-  Your browser does not support the <code>audio</code> element.
-</audio>
+  <h1>Welcome</h1>
 
-<script>
-  window.addEventListener('load', function() {
-    const audio = document.getElementById('bgMusic');
-    audio.muted = false; // unmute it
-    audio.volume = 0.1;  // set volume low
-    audio.play();        // start playing
-  });
-</script>
+  <!-- Hidden audio player -->
+  <audio id="myAudio" src="planet-code.mp3"></audio>
 
+  <!-- Custom button -->
+  <button id="playPauseBtn">Play Music</button>
 
-  <div class="equalizer">
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-    <div class="bar"></div>
-  </div>
+  <script>
+    const audio = document.getElementById('myAudio');
+    const button = document.getElementById('playPauseBtn');
+
+    // Set initial volume low
+    audio.volume = 0.1;
+
+    button.addEventListener('click', function() {
+      if (audio.paused) {
+        audio.play();
+        button.textContent = 'Pause Music';
+        button.classList.add('glow'); // add glow
+      } else {
+        audio.pause();
+        button.textContent = 'Play Music';
+        button.classList.remove('glow'); // remove glow
+      }
+    });
+
+    // Try autoplay muted first
+    window.addEventListener('load', function() {
+      audio.muted = true;
+      audio.play().then(() => {
+        audio.muted = false;
+        button.textContent = 'Pause Music';
+        button.classList.add('glow');
+      }).catch((error) => {
+        console.log('Autoplay blocked, waiting for user click');
+      });
+    });
+  </script>
+
 </body>
 </html>
+
 
