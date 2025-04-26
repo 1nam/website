@@ -98,6 +98,24 @@
   </style>
   </head>
 <body>
+  <div id="daily-thought" style="color: #00ffee; text-align: center; margin-top: 20px; font-style: italic;"></div>
+
+<script>
+  const thoughts = [
+    "One step at a time. Even backwards steps are steps.",
+    "Simple is powerful.",
+    "Keep coding. Keep laughing.",
+    "You are 90% Dr Pepper and 10% Pure Genius.",
+    "Bugs are just undiscovered features.",
+    "In the arms of an angel... feed the devs 😂",
+    "Arch Linux users fear nothing.",
+    "Remember: Not playing is sometimes the winning move."
+  ];
+
+  const randomThought = thoughts[Math.floor(Math.random() * thoughts.length)];
+  document.getElementById('daily-thought').innerText = `"${randomThought}"`;
+</script>
+
 <!-- Arctic Vault Contributor Badge -->
 <div class="vault-badge">
   <img src="https://github.githubassets.com/assets/arctic-code-vault-contributor-default-df8d74122a06.png" alt="Arctic Code Vault Contributor" />
