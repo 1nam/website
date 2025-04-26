@@ -98,7 +98,12 @@
   </style>
   </head>
 <body>
-  <div id="daily-thought" style="color: #00ffee; text-align: center; margin-top: 20px; font-style: italic;"></div>
+  <!-- Random Thought Here -->
+  <div id="daily-thought">...</div>
+  <script>...</script>
+
+  <!-- Then your "Welcome" header -->
+  <h1>Welcome to Psychic Succotash</h1>
 
 <script>
   const thoughts = [
@@ -115,6 +120,7 @@
   const randomThought = thoughts[Math.floor(Math.random() * thoughts.length)];
   document.getElementById('daily-thought').innerText = `"${randomThought}"`;
 </script>
+
 
 <!-- Arctic Vault Contributor Badge -->
 <div class="vault-badge">
