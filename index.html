@@ -70,5 +70,54 @@
   Music by <a href="https://pixabay.com/music/" target="_blank" style="color:lightgreen;">Pixabay</a>
 </footer>
 
+<!-- Your main HTML content above -->
+
+<!-- Footer Style + Glow Pulse + Footer Content -->
+<style>
+  @keyframes glowPulse {
+    0% {
+      box-shadow: 0 0 10px #00ff00;
+    }
+    50% {
+      box-shadow: 0 0 30px #00ff00, 0 0 60px #00ff00;
+    }
+    100% {
+      box-shadow: 0 0 10px #00ff00;
+    }
+  }
+
+  .footer-glow {
+    background: #1a1a1a;
+    padding: 30px;
+    text-align: center;
+    color: #ffa500;
+    font-family: 'Courier New', monospace;
+    font-size: 0.95em;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  .footer-glow p {
+    margin: 6px 0;
+  }
+
+  .footer-glow span {
+    color: #00ff00;
+  }
+</style>
+
+<footer class="footer-glow">
+  <p>👋 Hi, I’m That Developer You Probably Shouldn't Trust With Production... Yet 😅</p>
+  <p>🧠 Re-learning code like a raccoon with a stolen keyboard</p>
+  <p>🎶 Built a glowing MP3 site & accidentally learned copyright law</p>
+  <p>💃 Hot flash logs, twerk trackers, mood swings... it's a portfolio now</p>
+  <p>🧩 Waiting for everything to "click" like cosmic Tetris</p>
+  <p>😎 Clean code? Sometimes. Honest effort? Always.</p>
+  <p style="color:#bbb; font-style:italic; margin-top:15px;">
+    “I don’t know what I’m doing, but I’m doing it with <span>style</span>.”
+  </p>
+</footer>
+
+</body>
+</html>
 
 
